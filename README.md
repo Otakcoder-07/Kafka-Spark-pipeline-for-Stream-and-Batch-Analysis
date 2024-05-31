@@ -67,3 +67,15 @@ If there are no import errors, the libraries have been installed successfully.
 ## Conclusion
 
 You have now installed the necessary libraries for Flask, PyMongo, Confluent Kafka, and PySpark. Refer to the provided resources for detailed tutorials on how to use these libraries in your projects.
+
+## Running The Project
+1.Create 3 topics called hot,cold and medium these 3 shall be the topics to which kafka writes depending on the temperature.
+```.sh
+./kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic cold
+./kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic hot
+./kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic medium
+```
+2.Run the sensor.py file which will simulate the working of a iot-sensor which will measure turbidity,temperature,battery-life,measurement-id and timestamp.
+3.Run the push_data_to_kafka.py which will write to the 3 topics from stream-data depending on the water-temperature.
+4.Now run each of the hot.py,cold.py and medium.py which will do streaming-analysis using streaming-spark and store data in mongoDB for future batch processing.
+5.Run the individual files for batch processing which will do batch processing.We can then compare the time taken as well as accuracy of both and associated tradeoff by making changes in parameters in code.

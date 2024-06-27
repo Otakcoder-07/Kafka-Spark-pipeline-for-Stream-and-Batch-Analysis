@@ -1,4 +1,4 @@
-```markdown
+
 # Project Setup
 
 This guide provides instructions for setting up the necessary Python libraries for this project, including Flask, PyMongo, Confluent Kafka, and PySpark.
